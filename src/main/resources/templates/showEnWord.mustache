@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show all english word</title>
+</head>
+<body>
+    <div>See all word with description</div>
+    {{#enWords}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{word}}</span>
+            <i>{{description}}</i>
+        </div>
+    {{/enWords}}
+</body>
+</html>
