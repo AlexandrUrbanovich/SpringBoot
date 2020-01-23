@@ -27,10 +27,10 @@ public class EnWord {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "word")
+//    @Column(name = "word")
     private String word;
 
-    @Column(name = "description")
+//    @Column(name = "description")
     private String description;
 
 }

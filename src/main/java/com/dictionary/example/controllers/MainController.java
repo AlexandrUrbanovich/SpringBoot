@@ -2,7 +2,6 @@ package com.dictionary.example.controllers;
 
 import com.dictionary.example.models.EnWord;
 import com.dictionary.example.repository.EnWordRepository;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,27 +12,21 @@ import java.util.Map;
 
 
 @Controller
-public class EnWordController {
+public class MainController {
 
     @Autowired
     private EnWordRepository enWordRepository;
 
-    @GetMapping("/showEnWord")
-    public String findAllEnWord(Map<String, Object> model) {
+    @GetMapping()
+    public String main(Map<String, Object> model) {
 
         Iterable<EnWord> enWords = enWordRepository.findAll();
         model.put("enWords", enWords);
 
-        return "showEnWord";
-    }
-
-
-    @GetMapping()
-    public String findAllEnWordOnMain(Map<String, Object> model) {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("add")
     public String addEnWord(@RequestParam String word, @RequestParam String description, Map<String, Object> model) {
 
         EnWord enWord = new EnWord(word, description);
@@ -47,12 +40,12 @@ public class EnWordController {
 
 
     @PostMapping("filter")
-    public String filterByWord(@RequestParam String filter, Map<String, Object> model) {
+    public String filterByWord(@RequestParam String word, Map<String, Object> model) {
 
         Iterable<EnWord> enWords;
 
-        if(filter != null && !filter.isEmpty()) {
-            enWords = enWordRepository.findByWord(filter);
+        if(word != null && !word.isEmpty()) {
+            enWords = enWordRepository.findByWord(word.trim());
         } else {
             enWords = enWordRepository.findAll();
         }
