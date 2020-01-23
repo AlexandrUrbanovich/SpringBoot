@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show all english word</title>
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<div>
+    <form method="post">
+        <input type="text" name="word" placeholder="Input word"/>
+        <input type="text" name="description" placeholder="Input description"/>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <button type="submit">Add</button>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<div>Find word with description by word</div>
+<form method="post" action="filter">
+    <input type="text" name="filter"/>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit">Search</button>
+</form>
+<br>
+{{#enWords}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{word}}</span>
+        <i>{{description}}</i>
+    </div>
+{{/enWords}}
+
+
+</body>
+</html>

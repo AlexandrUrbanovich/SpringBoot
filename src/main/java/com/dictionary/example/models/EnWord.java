@@ -17,6 +17,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class EnWord {
 
+    public EnWord(String word, String description) {
+        this.word = word;
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
