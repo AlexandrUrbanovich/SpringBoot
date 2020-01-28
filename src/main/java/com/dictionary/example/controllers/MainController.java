@@ -17,7 +17,12 @@ public class MainController {
     @Autowired
     private EnWordRepository enWordRepository;
 
-    @GetMapping()
+    @GetMapping("/")
+    public String welcome(Map<String, Object> model) {
+        return "welcome";
+    }
+
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
 
         Iterable<EnWord> enWords = enWordRepository.findAll();
@@ -35,7 +40,7 @@ public class MainController {
         Iterable<EnWord> enWords = enWordRepository.findAll();
         model.put("enWords", enWords);
 
-        return "main";
+         return "main";
     }
 
 
