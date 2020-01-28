@@ -23,4 +23,8 @@ public class RuWord {
     @Column(name = "word")
     private String word;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    private EnWord enWord;
+
 }

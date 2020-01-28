@@ -17,9 +17,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class EnWord {
 
-    public EnWord(String word, String description) {
+    public EnWord(String word, String description, RuWord ruWord) {
         this.word = word;
         this.description = description;
+        this.ruWord = ruWord;
     }
 
     @Id
@@ -32,5 +33,9 @@ public class EnWord {
 
     @Column(name = "description")
     private String description;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ru_word_id")
+    private RuWord ruWord;
 
 }

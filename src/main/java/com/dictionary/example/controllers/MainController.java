@@ -1,6 +1,7 @@
 package com.dictionary.example.controllers;
 
 import com.dictionary.example.models.EnWord;
+import com.dictionary.example.models.RuWord;
 import com.dictionary.example.repository.EnWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,9 +33,13 @@ public class MainController {
     }
 
     @PostMapping("add")
-    public String addEnWord(@RequestParam String word, @RequestParam String description, Map<String, Object> model) {
+    public String addEnWord(
+            @RequestParam String word,
+            @RequestParam String description,
+            RuWord ruWord, Map<String, Object> model
+    ) {
 
-        EnWord enWord = new EnWord(word, description);
+        EnWord enWord = new EnWord(word, description, ruWord);
         enWordRepository.save(enWord);
 
         Iterable<EnWord> enWords = enWordRepository.findAll();
