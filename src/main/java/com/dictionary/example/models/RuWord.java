@@ -10,21 +10,24 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "ru_Word")
+@Table(name = "ru_word")
 @AllArgsConstructor
 @NoArgsConstructor
 public class RuWord {
 
+    public RuWord(String word) {
+        this.word = word;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ru_word_id")
     private Long id;
 
     @Column(name = "word")
     private String word;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(mappedBy = "ruWord")
     private EnWord enWord;
 
 }

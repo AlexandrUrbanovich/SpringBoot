@@ -10,6 +10,4 @@ public interface EnWordRepository extends CrudRepository<EnWord, Long> {
 
     List<EnWord> findByWord(String word);
 
-
-
 }
