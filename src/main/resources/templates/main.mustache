@@ -20,7 +20,7 @@
     <form method="post" action="add">
         <input type="text" name="word" placeholder="Input word"/>
         <input type="text" name="description" placeholder="Input description"/>
-        <input type="text" name="translate" placeholder="Input description" />
+        <input type="text" name="translate" placeholder="Input translate" />
         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Add</button>
     </form>
@@ -43,7 +43,6 @@
         <b>{{ruWord.word}}</b>
     </div>
 {{/enWords}}
-
 
 </body>
 </html>

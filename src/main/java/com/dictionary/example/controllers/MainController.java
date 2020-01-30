@@ -6,9 +6,7 @@ import com.dictionary.example.repository.EnWordRepository;
 import com.dictionary.example.repository.RuWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -39,17 +37,21 @@ public class MainController {
     public String addEnWord(
             @RequestParam String word,
             @RequestParam String description,
-            RuWord ruWord, Map<String, Object> model
+            @RequestParam String translate, Map<String, Object> model
     ) {
+
+        RuWord ruWord = new RuWord();
+        ruWord.setWord(translate);
 
         EnWord enWord = new EnWord(word, description);
         enWord.setRuWord(ruWord);
+
         enWordRepository.save(enWord);
 
         Iterable<EnWord> enWords = enWordRepository.findAll();
         model.put("enWords", enWords);
 
-         return "main";
+        return "main";
     }
 
 
