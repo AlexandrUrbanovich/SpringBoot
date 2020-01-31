@@ -6,6 +6,7 @@ import com.dictionary.example.repository.EnWordRepository;
 import com.dictionary.example.repository.RuWordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -25,10 +26,18 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
 
         Iterable<EnWord> enWords = enWordRepository.findAll();
-        model.put("enWords", enWords);
+
+        if(filter != null && !filter.isEmpty()) {
+            enWords = enWordRepository.findByWord(filter.trim());
+        } else {
+            enWords = enWordRepository.findAll();
+        }
+
+        model.addAttribute("enWords", enWords);
+        model.addAttribute("filter", filter);
 
         return "main";
     }
@@ -54,20 +63,5 @@ public class MainController {
         return "main";
     }
 
-
-    @PostMapping("filter")
-    public String filterByWord(@RequestParam String word, Map<String, Object> model) {
-
-        Iterable<EnWord> enWords;
-
-        if(word != null && !word.isEmpty()) {
-            enWords = enWordRepository.findByWord(word.trim());
-        } else {
-            enWords = enWordRepository.findAll();
-        }
-
-        model.put("enWords", enWords);
-        return "main";
-    }
 
 }
