@@ -11,22 +11,26 @@ User editor
 <br>
 <form action="/user" method="post">
     {{#user}}
-    <input type="text" name="User Name" value="{{userName}}">
-    {{#roles}}
-        <label>
-            <input type="checkbox" name="{{roles}}">{{roles}}
-        </label>
-        <label>
-            <input type="checkbox" name="{{roles}}">{{roles}}
-        </label>
-    {{/roles}}
-    <input type="hidden" name="userId" value="{{id}}" >
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-    <button type="submit">Save</button>
+        <input type="text" name="userName" value="{{userName}}">
+        {{#roleUser}}
+            <div>
+                <label>
+                    <input type="checkbox" name="{{roleUser}}">{{roleUser}}
+                </label>
+            </div>
+        {{/roleUser}}
+        {{#roleAdmin}}
+            <div>
+                <label>
+                    <input type="checkbox" name="{{roleAdmin}}">{{roleAdmin}}
+                </label>
+            </div>
+        {{/roleAdmin}}
+        <input type="hidden" name="userId" value="{{id}}">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <button type="submit">Save</button>
     {{/user}}
 </form>
-
-
 
 
 </body>
