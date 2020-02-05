@@ -5,11 +5,11 @@ import com.dictionary.example.models.User;
 import com.dictionary.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -23,11 +23,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
+    public String addUser(User user, Model model) {
         User userFormDB = userRepository.findByUserName(user.getUserName());
 
         if(userFormDB != null) {
-            model.put("message", "User exists!");
+            model.addAttribute("message", "User exists!");
             return "registration" ;
         }
 
