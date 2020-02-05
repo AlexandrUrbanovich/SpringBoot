@@ -33,8 +33,7 @@ public class UserController {
     public String userEditForm(@PathVariable User user, Model model) {
 
         model.addAttribute("user", user);
-        model.addAttribute("roleUser", Role.USER);
-        model.addAttribute("roleAdmin", Role.ADMIN);
+        model.addAttribute("roles", Role.values());
 
         return "userEdit";
     }
