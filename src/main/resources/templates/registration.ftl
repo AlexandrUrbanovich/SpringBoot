@@ -2,13 +2,10 @@
 <#import "parts/login.ftl" as l>
 
 <@c.page>
-Add new user
+<div class="mb-1">Add new user</div>
 
-<form action="/registration" method="post">
-    <div><label> User Name : <input type="text" name="userName"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <div><input type="submit" value="Register"/></div>
-</form>
+${message?ifExists}
+
+<@l.login "/registration" false />
 
 </@c.page>
