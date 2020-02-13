@@ -5,7 +5,9 @@ import com.dictionary.example.models.User;
 import com.dictionary.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,9 +53,13 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public String getProfile(Model model, @AuthenticationPrincipal User user) {
+    public String getProfile(Model model) {
 
-        model.addAttribute("username", user.getUsername());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        model.addAttribute("username", name);
+
+//        model.addAttribute("username", user.getUsername());
         return "profile";
     }
 
