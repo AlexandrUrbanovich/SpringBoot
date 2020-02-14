@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -28,9 +30,12 @@ public class EnWord {
     private Long enWordId;
 
     @Column(name = "word")
+    @NotBlank(message = "Please fill the word")
     private String word;
 
     @Column(name = "description")
+    @NotBlank(message = "Please fill the description")
+    @Length(max = 255, message = "Description to long (more than 255 chars)")
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)

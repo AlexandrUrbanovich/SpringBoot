@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class RuWord {
 
-    public RuWord(String word) {
-        this.word = word;
+    public RuWord(String translate) {
+        this.translate = translate;
     }
 
     @Id
@@ -25,7 +26,8 @@ public class RuWord {
     private Long id;
 
     @Column(name = "word")
-    private String word;
+    @NotBlank(message = "Please fill the translate")
+    private String translate;
 
     @OneToOne(mappedBy = "ruWord")
     private EnWord enWord;
