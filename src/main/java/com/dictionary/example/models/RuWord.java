@@ -25,7 +25,7 @@ public class RuWord {
     @Column(name = "ru_word_id")
     private Long id;
 
-    @Column(name = "word")
+    @Column(name = "translate")
     @NotBlank(message = "Please fill the translate")
     private String translate;
 
